@@ -217,12 +217,12 @@ class Authentication extends CI_Controller
         $mail->isSMTP(); // Set mailer to use SMTP
         $mail->CharSet = "utf-8"; // set charset to utf8
         $mail->SMTPAuth = true; // Enable SMTP authentication
-        $mail->SMTPSecure = 'STARTTLS'; // Enable TLS encryption, `ssl` also accepted
+        $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
 
-        $mail->SMTPDebug = false;
+        $mail->SMTPDebug = true;
 
-        $mail->Host = 'smtp.office365.com'; // Specify main and backup SMTP servers
-        $mail->Port = 587; // TCP port to connect to
+        $mail->Host = 'k-peta.sman1anjatan.sch.id'; // Specify main and backup SMTP servers
+        $mail->Port = 465; // TCP port to connect to
         $mail->SMTPOptions = array(
             'ssl' => array(
                 'verify_peer' => false,
@@ -232,7 +232,7 @@ class Authentication extends CI_Controller
         );
         $mail->isHTML(true); // Set email format to HTML
 
-        $mail->Username = 'k-peta@outlook.co.id'; // SMTP username
+        $mail->Username = 'suport@k-peta.sman1anjatan.sch.id'; // SMTP username
         $mail->Password = 'Rasidi250789'; // SMTP password
 
         if ($type == 'Verifikasi Akun K-PETA') {
@@ -257,7 +257,7 @@ class Authentication extends CI_Controller
         	';
         }
 
-        $mail->setFrom('k-peta@outlook.co.id', 'ADMIN K-PETA SMAN 1 ANJATAN'); //Your application NAME and EMAIL
+        $mail->setFrom('suport@k-peta.sman1anjatan.sch.id', 'ADMIN K-PETA SMAN 1 ANJATAN'); //Your application NAME and EMAIL
         $mail->Subject = $type; //Message subject
         $mail->addAddress($this->input->post('email'), $nama); // Target email
 

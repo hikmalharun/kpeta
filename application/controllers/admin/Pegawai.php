@@ -411,9 +411,9 @@ class Pegawai extends CI_Controller
         $mail->isSMTP(); // Set mailer to use SMTP
         $mail->CharSet = "utf-8"; // set charset to utf8
         $mail->SMTPAuth = true; // Enable SMTP authentication
-        $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
+        $mail->SMTPSecure = 'STARTTLS'; // Enable TLS encryption, `ssl` also accepted
 
-        $mail->Host = 'k-peta.sman1anjatan.sch.id'; // Specify main and backup SMTP servers
+        $mail->Host = 'smtp.office365.com'; // Specify main and backup SMTP servers
         $mail->Port = 465; // TCP port to connect to
         $mail->SMTPOptions = array(
             'ssl' => array(
@@ -424,7 +424,7 @@ class Pegawai extends CI_Controller
         );
         $mail->isHTML(true); // Set email format to HTML
 
-        $mail->Username = 'suport@k-peta.sman1anjatan.sch.id'; // SMTP username
+        $mail->Username = 'k-peta@outlook.co.id'; // SMTP username
         $mail->Password = 'Rasidi250789'; // SMTP password
 
         $message = '
@@ -440,7 +440,7 @@ class Pegawai extends CI_Controller
         Waktu verifikasi akun hanya tersedia 24 jam setelah menerima link diatas.</p>
         ';
 
-        $mail->setFrom('suport@k-peta.sman1anjatan.sch.id', 'ADMIN K-PETA SMAN 1 ANJATAN'); //Your application NAME and EMAIL
+        $mail->setFrom('k-peta@outlook.co.id', 'ADMIN K-PETA SMAN 1 ANJATAN'); //Your application NAME and EMAIL
         $mail->Subject = $type; //Message subject
         $mail->addAddress($this->input->post('email'), $name); // Target email
 
