@@ -219,6 +219,8 @@ class Authentication extends CI_Controller
         $mail->SMTPAuth = true; // Enable SMTP authentication
         $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
 
+        $mail->SMTPDebug = true;
+
         $mail->Host = 'k-peta.sman1anjatan.sch.id'; // Specify main and backup SMTP servers
         $mail->Port = 465; // TCP port to connect to
         $mail->SMTPOptions = array(
