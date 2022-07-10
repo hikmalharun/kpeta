@@ -42,9 +42,7 @@
                                         </select>
                                         <label for="lokasi">Lokasi</label>
                                         <input type="text" id="lokasi" name="lokasi" class="form-control mb-1" placeholder="Copy Paste Titik Koordinat Dari Google Map" required>
-
                                         <div class="mb-1" id="map" style="width: 100%;height: 320px;"></div>
-
                                         <table width="100%">
                                             <tr>
                                                 <td>

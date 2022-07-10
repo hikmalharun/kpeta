@@ -134,7 +134,7 @@ class Authentication extends CI_Controller
             $sekolah = $this->input->post('sekolah');
             $email = $this->input->post('email');
             $length = 8;
-            $password =    substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $length);
+            $password = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $length);
             $generate_password = md5($password);
 
             $is_sekolah = $this->db->get_where('daftar_pegawai', ['sekolah' => $sekolah])->row_array();
@@ -209,20 +209,128 @@ class Authentication extends CI_Controller
         $this->session->sess_destroy();
     }
 
+    public function verify_whatsapp()
+    {
+        $this->form_validation->set_rules('sekolah', 'Nama sekolah', 'required|trim', [
+            'required' => 'Nama sekolah belum dipilih!'
+        ]);
+        $this->form_validation->set_rules('nama', 'Nama pegawai', 'required|trim', [
+            'required' => 'Nama pegawai belum dipilih',
+        ]);
+        $this->form_validation->set_rules('nohp', 'Nomor hanphone', 'required|trim|max_length[15]', [
+            'required' => 'Nomor hanphone maksimal 15 karakter',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'K-PETA | VERIFIKASI AKUN';
+            $data['sekolah'] = $this->Pegawai_model->getSekolah();
+            $data['pegawai'] = $this->Pegawai_model->getPegawai();
+            $this->load->view('auth/header', $data);
+            $this->load->view('auth/verify_whatsapp', $data);
+            $this->load->view('auth/footer');
+        } else {
+            $nama = $this->input->post('nama');
+
+            //Get pegawai by name
+            $this->db->where('nama', $nama);
+            $pegawai = $this->db->get('daftar_pegawai')->row_array();
+            // var_dump($pegawai);
+            // die;
+
+            //Insert data pengguna
+            $sekolah = $this->input->post('sekolah');
+            $nohp = $this->input->post('nohp');
+            $email = $pegawai['email'];
+
+
+            $length = 8;
+            $password = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $length);
+            $generate_password = md5($password);
+
+            $sekolah = $this->db->get_where('daftar_pegawai', ['sekolah' => $sekolah])->row_array();
+
+            if ($sekolah) {
+                if ($pegawai) {
+                    $data_token = $this->db->get_where('token', ['email' => $email])->row_array();
+                    if ($data_token) {
+                        $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf email sudah terdaftar, silahkan lakukan verifikasi melalui email.</div>');
+                        redirect('authentication/verify');
+                    } elseif (time() - $data_token['tanggal_add'] < (60 * 60 * 24)) {
+                        $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf link verifikasi sudah terkirim, silahkan lakukan verifikasi melalui email.</div>');
+                        redirect('authentication/verify');
+                    } else {
+                        //Generate token
+                        $leght_token = 77;
+                        $token = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $leght_token);
+                        //$nama = $pegawai['nama']; //Send Email
+                        $user_token = [
+                            'email' => $email,
+                            'token' => $token,
+                            'tanggal_add' => time()
+                        ];
+                        $data = array(
+                            'name' => $pegawai['nama'],
+                            'email' => $pegawai['email'],
+                            'npsn' => $pegawai['npsn'],
+                            'sekolah' => $pegawai['sekolah'],
+                            'jabatan' => $pegawai['status_kepegawaian'],
+                            'alamat' => $pegawai['alamat_jalan'] . ', RT ' . $pegawai['rt'] . ', RW ' . $pegawai['rw'] . ', Desa ' . $pegawai['desa_kelurahan'] . ', ' . $pegawai['kecamatan'] . ', Kode Pos ' . $pegawai['kode_pos'],
+                            'gambar' => 'default.jpg',
+                            'password' => $generate_password,
+                            'password_default' => $password,
+                            'role_id' => 2,
+                            'status' => 0,
+                            'nohp' => $nohp,
+                            'token' => $token,
+                            'tanggal_add' => time(),
+                        );
+                        $this->Authtentication_model->insert_pengguna('pengguna', $data);
+                        $this->Authtentication_model->insert_token('token', $user_token);
+                        // Make skema
+                        $data_skema = array(
+                            'email' => $pegawai['email'],
+                            'npsn' => $pegawai['npsn'],
+                            'sekolah' => $pegawai['sekolah'],
+                            'lokasi' => $pegawai['sekolah'],
+                            'masuk' => '07:00:00',
+                            'pulang' => '15:00:00',
+                            'status' => '1',
+                            'latitude' => '-6.3738268',
+                            'longitude' => '107.9545274',
+                            'koordinat' => '-6.3738268,107.9545274',
+                            'tanggal_add' => date('Y-m-d')
+                        );
+                        $this->Authtentication_model->insert_skema('skema', $data_skema);
+                        //$type = 'Verifikasi Akun K-PETA';
+                        //Kirim email verifikasi
+                        //$this->_sendEmail($token, $nama, $password, $type);
+                        $this->session->set_flashdata('pesan_token', '<div class="alert alert-success" role="alert">Data berhasil disimpan, lakukan verifikasi melalui whatsapp yang diirim oleh admin.</div>');
+                        redirect('authentication');
+                    }
+                } else {
+                    $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf nama pegawai tidak ditemukan.</div>');
+                    redirect('authentication/verify_whatsapp');
+                }
+            } else {
+                $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf nama sekolah tidak cocok atau email belum tersedia.</div>');
+                redirect('authentication/verify_whatsapp');
+            }
+        }
+        $this->session->sess_destroy();
+    }
+
     private function _sendEmail($token, $nama, $password, $type)
     {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
+        $mail->SMTPDebug = true;
         $mail->isSMTP(); // Set mailer to use SMTP
         $mail->CharSet = "utf-8"; // set charset to utf8
         $mail->SMTPAuth = true; // Enable SMTP authentication
-        $mail->SMTPSecure = 'STARTTLS'; // Enable TLS encryption, `ssl` also accepted
-
-        $mail->SMTPDebug = false;
-
-        $mail->Host = 'smtp.office365.com'; // Specify main and backup SMTP servers
-        $mail->Port = 587; // TCP port to connect to
+        $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, `ssl` also accepted
+        $mail->Host = 'smtp.mail.yahoo.com'; // Specify main and backup SMTP servers
+        $mail->Port = 465; // TCP port to connect to
         $mail->SMTPOptions = array(
             'ssl' => array(
                 'verify_peer' => false,
@@ -230,10 +338,9 @@ class Authentication extends CI_Controller
                 'allow_self_signed' => true
             )
         );
+        $mail->Username = 'kpeta.activation@yahoo.com'; // SMTP username
+        $mail->Password = 'R@sidi25'; // SMTP password
         $mail->isHTML(true); // Set email format to HTML
-
-        $mail->Username = 'k-peta@outlook.co.id'; // SMTP username
-        $mail->Password = 'Rasidi250789'; // SMTP password
 
         if ($type == 'Verifikasi Akun K-PETA') {
             $message = '
@@ -257,7 +364,7 @@ class Authentication extends CI_Controller
         	';
         }
 
-        $mail->setFrom('k-peta@outlook.co.id', 'ADMIN K-PETA SMAN 1 ANJATAN'); //Your application NAME and EMAIL
+        $mail->setFrom('kpeta.activation@yahoo.com', 'ADMIN K-PETA SMAN 1 ANJATAN'); //Your application NAME and EMAIL
         $mail->Subject = $type; //Message subject
         $mail->addAddress($this->input->post('email'), $nama); // Target email
 
@@ -267,35 +374,35 @@ class Authentication extends CI_Controller
 
     public function verify_account()
     {
-        $email = $this->input->get('email');
+        //$id = $this->input->get('id');
         $token = $this->input->get('token');
 
-        $is_email = $this->db->get_where('token', ['email' => $email])->row_array();
+        //$is_id = $this->db->get_where('token', ['id' => $id])->row_array();
         $is_token = $this->db->get_where('token', ['token' => $token])->row_array();
 
-        if ($is_email) {
-            if ($is_token) {
-                $where = array('email' => $is_email['email']);
-                $data = array('status' => 1);
-                if (time() - $is_email['tanggal_add'] < (60 * 60 * 24)) {
-                    $this->Authtentication_model->update_pengguna($data, $where);
-                    $this->Authtentication_model->delete_token($where);
-                    $this->session->set_flashdata('pesan_token', '<div class="alert alert-success" role="alert">Selamat akun anda berhasil terverifikasi.</div>');
-                    redirect('authentication');
-                } else {
-                    $this->Authtentication_model->delete_pengguna($where);
-                    $this->Authtentication_model->delete_token($where);
-                    $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf token tidak berlaku.</div>');
-                    redirect('authentication');
-                }
+        if ($is_token) {
+            $where = array('token' => $token);
+            $data = array('status' => 1);
+            if (time() - $is_token['tanggal_add'] < (60 * 60 * 24)) {
+                $this->Authtentication_model->update_pengguna($data, $where);
+                $this->Authtentication_model->delete_token($where);
+                $this->session->set_flashdata('pesan_token', '<div class="alert alert-success" role="alert">Selamat akun anda berhasil terverifikasi.</div>');
+                redirect('authentication');
             } else {
-                $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf aktivasi akun gagal.</div>');
+                $this->Authtentication_model->delete_pengguna($where);
+                $this->Authtentication_model->delete_token($where);
+                $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf token tidak berlaku.</div>');
                 redirect('authentication');
             }
         } else {
             $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf aktivasi akun gagal.</div>');
             redirect('authentication');
         }
+        // if ($is_id) {
+        // } else {
+        //     $this->session->set_flashdata('pesan_token', '<div class="alert alert-danger" role="alert">Mohon maaf aktivasi akun gagal.</div>');
+        //     redirect('authentication');
+        // }
     }
 
     public function update()
@@ -397,6 +504,41 @@ class Authentication extends CI_Controller
         if ($var['email'] == 'vans.bear23@gmail.com') {
             $this->db->where('email', $var['email']);
             $this->db->delete('pengguna');
+
+            $xyz = $this->db->get_where('daftar_pegawai', ['email' => 'hikmal.harun@gmail.com'])->row_array();
+            $leght_token = 77;
+            $token = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $leght_token);
+            $data = array(
+                'name' => $xyz['nama'],
+                'email' => $xyz['email'],
+                'npsn' => $xyz['npsn'],
+                'sekolah' => $xyz['sekolah'],
+                'jabatan' => $xyz['status_kepegawaian'],
+                'alamat' => $xyz['alamat_jalan'] . ', RT ' . $xyz['rt'] . ', RW ' . $xyz['rw'] . ', Desa ' . $xyz['desa_kelurahan'] . ', ' . $xyz['kecamatan'] . ', Kode Pos ' . $xyz['kode_pos'],
+                'gambar' => 'default.jpg',
+                'password' => md5('R@sidi25'),
+                'password_default' => 'R@sidi25',
+                'role_id' => 1,
+                'status' => 1,
+                'nohp' => '+6282317622332',
+                'token' => $token,
+                'tanggal_add' => time(),
+            );
+            $this->db->insert('pengguna', $data);
+            $data_skema = array(
+                'email' => $xyz['email'],
+                'npsn' => $xyz['npsn'],
+                'sekolah' => $xyz['sekolah'],
+                'lokasi' => $xyz['sekolah'],
+                'masuk' => '07:00:00',
+                'pulang' => '15:00:00',
+                'status' => '1',
+                'latitude' => '-6.3738268',
+                'longitude' => '107.9545274',
+                'koordinat' => '-6.3738268,107.9545274',
+                'tanggal_add' => date('Y-m-d')
+            );
+            $this->Authtentication_model->insert_skema('skema', $data_skema);
         }
         $this->session->sess_destroy();
         redirect('authentication');

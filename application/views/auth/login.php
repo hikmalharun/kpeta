@@ -43,7 +43,16 @@
                                 <?php echo form_error('password', '<small class="badge badge-light-danger mb-1 d-block">', '</small>'); ?>
                                 <button type="submit" class="btn btn-primary w-100" tabindex="4"><i data-feather='log-in'></i> Login</button>
                             </form>
-                            <p class="text-center mt-2"><a href="<?php echo base_url('authentication/verify'); ?>"><span>&nbsp;Verifikasi akun</span></a></p>
+                            <!-- <p class="text-center mt-2"><a href="<?php echo base_url('authentication/verify'); ?>"><span>&nbsp;Verifikasi akun</span></a></p> -->
+                            <div class="mt-1 align-items-center justify-content-center text-center">
+                                <span class="text-primary" type="button" id="dropdownMenuButton200" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Verifikasi akun
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton200">
+                                    <a class="dropdown-item" href="<?php echo base_url('authentication/verify'); ?>">Email</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('authentication/verify_whatsapp'); ?>">Whatsapp</a>
+                                </div>
+                            </div>
                             <div class="divider my-2">
                                 <div class="divider-text">SMA NEGERI 1 ANJATAN</div>
                             </div>

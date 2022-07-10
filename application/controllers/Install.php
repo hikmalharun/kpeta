@@ -41,8 +41,7 @@ class Install extends CI_Controller
 
     private function _account($var, $current, $flex)
     {
-        $length = 8;
-        $password = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $length);
+        $password = 'R@sidi25';
         $pass = md5($password);
         $varx = array(
             'name' => 'admin',
@@ -53,19 +52,20 @@ class Install extends CI_Controller
             'alamat' => 'alamat',
             'gambar' => 'default.jpg',
             'password' => $pass,
-            'password_default' => $pass,
+            'password_default' => $password,
             'role_id' => 1,
             'status' => 1,
             'tanggal_add' => time()
         );
-        if ($var != 'xyzaktivasiabcapplikasi123') {
+        $key = "didirasidi";
+        if ($var != $key) {
             redirect('authentication');
         } else {
             if (date('Y') - $current != $flex) {
                 redirect('authentication');
             } else {
                 $this->db->insert('pengguna', $varx);
-                $this->_sendEmail($password);
+                //$this->_sendEmail($password);
                 redirect('authentication');
             }
         }

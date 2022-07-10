@@ -35,6 +35,8 @@
                                         <input id="name" name="name" type="text" class="form-control mb-1" placeholder="Nama Lengkap" required>
                                         <label for="email">Email</label>
                                         <input id="email" name="email" type="text" class="form-control mb-1" placeholder="Email" required>
+                                        <label for="nohp">Email</label>
+                                        <input id="nohp" name="nohp" type="text" class="form-control mb-1" placeholder="Nomor Whatsapp" required>
                                         <label for="sekolah">Sekolah</label>
                                         <select name="sekolah" class="form-control mb-1" required>
                                             <option value="">Pilih Sekolah</option>
@@ -97,6 +99,12 @@
                                                             <input type="hidden" name="id" value="<?php echo $pg->id; ?>">
                                                             <button type="submit" class="btn btn-sm btn-success" style="width: 80%; margin: 2px;">Reset Password</button>
                                                         </form>
+                                                        <?php
+                                                        $whatsapp = "https://api.whatsapp.com/send?phone=";
+                                                        $link = base_url() . 'authentication/verify_account?token=' . $pg->token . '%20%20Dengan%20%20*Username*%20=%20' . $pg->email . ',%20*Password*%20=%20' . $pg->password_default;
+                                                        $text = $link;
+                                                        ?>
+                                                        <a href="<?php echo $whatsapp . $pg->nohp . '&text=' . $text; ?>" type="button" class="btn btn-sm btn-success" target="_blank" style="width: 80%; margin: 2px;">Kirim Verifikasi</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>

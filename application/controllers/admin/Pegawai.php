@@ -351,10 +351,15 @@ class Pegawai extends CI_Controller
         $name = $this->input->post('name');
         $sekolah = $this->input->post('sekolah');
         $email = $this->input->post('email');
+        $nohp = $this->input->post('nohp');
         $length = 8;
         $password = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $length);
         $generate_password = md5($password);
         $is_sekolah = $this->db->get_where('daftar_pegawai', ['sekolah' => $sekolah])->row_array();
+
+        //Generate token
+        $leght_token = 77;
+        $token = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $leght_token);
 
         $data = array(
             'name' => $name,
@@ -368,11 +373,10 @@ class Pegawai extends CI_Controller
             'password_default' => $password,
             'role_id' => 2,
             'status' => 0,
+            'nohp' => $nohp,
+            'token' => $token,
             'tanggal_add' => time(),
         );
-        //Generate token
-        $leght_token = 77;
-        $token = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 1, $leght_token);
         $user_token = [
             'email' => $email,
             'token' => $token,
@@ -396,10 +400,10 @@ class Pegawai extends CI_Controller
         );
         $this->Authtentication_model->insert_skema('skema', $data_skema);
 
-        $type = 'Verifikasi Akun K-PETA';
+        //$type = 'Verifikasi Akun K-PETA';
         //Kirim email verifikasi
-        $this->_sendEmail($token, $name, $password, $type);
-        $this->session->set_flashdata('pesan_token', '<div class="alert alert-success" role="alert">Silahkan lakukan verifikasi akun melalui email.</div>');
+        //$this->_sendEmail($token, $name, $password, $type);
+        $this->session->set_flashdata('pesan_token', '<div class="alert alert-success" role="alert">Silahkan lakukan verifikasi akun melalui whatsapp.</div>');
         redirect('admin/pegawai/data_pengguna');
     }
 
@@ -450,7 +454,7 @@ class Pegawai extends CI_Controller
 
     public function data_pengguna()
     {
-        $data['title'] = "DATA PEGAWAI";
+        $data['title'] = "DATA PENGGUNA";
         $data['sekolah'] = $this->Pegawai_model->getSekolah();
         $data['data_pegawai'] = $this->Pegawai_model->getPegawai();
         $data['data_pengguna'] = $this->Pegawai_model->getPengguna();
