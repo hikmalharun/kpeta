@@ -177,10 +177,10 @@ class Pegawai extends CI_Controller
 
         if ($jam > $batas_awal_masuk || $jam < $batas_akhir_masuk) {
             if ($masuk == 0) {
-                redirect('dashboard');
-            } else {
                 $data['title'] = "ABSEN";
                 $this->load->view('absen_masuk', $data);
+            } else {
+                redirect('dashboard');
             }
         } else {
             redirect('dashboard');
@@ -203,10 +203,10 @@ class Pegawai extends CI_Controller
 
         if ($jam > $jam_pulang && $jam < $batas_akhir_pulang) {
             if ($pulang == 0) {
-                redirect('dashboard');
-            } else {
                 $data['title'] = "ABSEN";
                 $this->load->view('absen_pulang', $data);
+            } else {
+                redirect('dashboard');
             }
         } else {
             redirect('dashboard');
