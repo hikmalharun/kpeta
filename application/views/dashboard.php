@@ -36,6 +36,10 @@
                                 </script>
                             </td>
                         </tr>
+                        <tr>
+                            <td><?php echo $masuk; ?></td>
+                            <td><?php echo $pulang; ?></td>
+                        </tr>
                     </table>
                 </div>
 

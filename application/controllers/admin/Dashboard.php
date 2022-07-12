@@ -74,6 +74,8 @@ class Dashboard extends CI_Controller
         $data['skema'] = $this->db->get_where('skema', ['email' => $this->session->userdata('email')])->row_array();
         $data['masuk'] = $this->db->get_where('absen_masuk', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->row_array();
         $data['pulang'] = $this->db->get_where('absen_pulang', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->row_array();
+        $data['masuk'] = $this->db->get_where('absen_masuk', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->num_rows();
+        $data['pulang'] = $this->db->get_where('absen_pulang', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->num_rows();
 
         if (
             $data['user']['password'] == md5($data['user']['password_default'])
