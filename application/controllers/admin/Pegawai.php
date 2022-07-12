@@ -554,7 +554,7 @@ class Pegawai extends CI_Controller
             if ($masuk == 1) {
                 $data['title'] = "ABSEN";
                 $this->load->view('absen_masuk', $data);
-            } else {
+            } elseif ($masuk == 1) {
                 redirect('admin/dashboard');
             }
         } else {
@@ -580,7 +580,7 @@ class Pegawai extends CI_Controller
             if ($pulang == 0) {
                 $data['title'] = "ABSEN";
                 $this->load->view('absen_pulang', $data);
-            } else {
+            } elseif ($pulang == 1) {
                 redirect('admin/dashboard');
             }
         } else {
