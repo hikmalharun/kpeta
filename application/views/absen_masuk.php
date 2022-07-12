@@ -25,7 +25,7 @@
 
         @media only screen and (max-width: 600px) {
             .absen {
-                margin-top: 50%;
+                margin-top: 45%;
             }
         }
 
