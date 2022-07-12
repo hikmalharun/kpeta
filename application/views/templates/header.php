@@ -36,7 +36,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>app-assets/css/plugins/charts/chart-apex.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>app-assets/css/plugins/extensions/ext-component-toastr.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>app-assets/css/pages/app-invoice-list.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>app-assets/css/plugins/maps/map-leaflet.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -47,8 +48,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>fontawesome/css/all.min.css">
     <!-- END: Fontawesome -->
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>app-assets/vendors/css/maps/leaflet.min.css">
 
 </head>
 <!-- END: Head-->
