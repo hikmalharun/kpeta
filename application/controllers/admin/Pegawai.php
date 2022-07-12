@@ -550,12 +550,12 @@ class Pegawai extends CI_Controller
         $batas_awal_masuk = $jam_masuk - 7200;
         $batas_akhir_masuk = $jam_masuk + 7200;
 
-        if ($masuk == 0) {
-            if ($jam > $batas_awal_masuk || $jam < $batas_akhir_masuk) {
+        if ($jam > $batas_awal_masuk || $jam < $batas_akhir_masuk) {
+            if ($masuk == 1) {
+                redirect('admin/dashboard');
+            } else {
                 $data['title'] = "ABSEN";
                 $this->load->view('absen_masuk', $data);
-            } else {
-                redirect('admin/dashboard');
             }
         } else {
             redirect('admin/dashboard');
@@ -576,12 +576,12 @@ class Pegawai extends CI_Controller
         $jam_pulang = strtotime($data['skema']['pulang']);
         $batas_akhir_pulang = $jam_pulang + 7200;
 
-        if ($pulang == 0) {
-            if ($jam > $jam_pulang && $jam < $batas_akhir_pulang) {
+        if ($jam > $jam_pulang && $jam < $batas_akhir_pulang) {
+            if ($pulang == 0) {
+                redirect('admin/dashboard');
+            } else {
                 $data['title'] = "ABSEN";
                 $this->load->view('absen_pulang', $data);
-            } else {
-                redirect('admin/dashboard');
             }
         } else {
             redirect('admin/dashboard');
