@@ -538,8 +538,20 @@ class Pegawai extends CI_Controller
     public function reset_skema()
     {
         $email = $this->input->post('email');
-
+        $jenis = $this->input->post('jenis');
+        if ($jenis == 1) {
+            $masuk = '07:30:00';
+            $pulang = '16:00:00';
+        } elseif ($jenis == 2) {
+            $masuk = '07:00:00';
+            $pulang = '15:30:00';
+        } elseif ($jenis == 3) {
+            $masuk = '18:00:00';
+            $pulang = '06:00:00';
+        }
         $skema_data = array(
+            'masuk' => $masuk,
+            'pulang' => $pulang,
             'latitude' => '-6.373581',
             'longitude' => '107.957511',
             'koordinat' => '-6.373581, 107.957511',
