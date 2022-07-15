@@ -260,6 +260,74 @@
                     </div>
                 </div>
             </section>
+            <?php if ($user['role_id'] == 1) { ?>
+                <section class="text-center mt-3">
+                    <div class="card">
+                        <div class="container-fluid">
+                            <h3 class="m-2"><strong>DATA ABSEN MASUK BULAN <?php echo $month; ?></strong></h3>
+                            <div class="table-responsive m-2">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal</th>
+                                            <th>Jam</th>
+                                            <th>Jarak</th>
+                                            <th>Alamat</th>
+                                            <th>Foto</th>
+                                            <th>Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($rekap_all_masuk as $all_m) : ?>
+                                            <tr>
+                                                <td><?php echo $all_m['tanggal_absen']; ?></td>
+                                                <td><?php echo $all_m['jam_absen']; ?></td>
+                                                <td><?php echo round($all_m['jarak']) . " Meter"; ?></td>
+                                                <td><?php echo $all_m['address']; ?></td>
+                                                <td><img src="<?php echo base_url('uploads/') . $all_m['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
+                                                <td></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="text-center mt-3">
+                    <div class="card">
+                        <div class="container-fluid">
+                            <h3 class="m-2"><strong>DATA ABSEN PULANG BULAN <?php echo $month; ?></strong></h3>
+                            <div class="table-responsive m-2">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal</th>
+                                            <th>Jam</th>
+                                            <th>Jarak</th>
+                                            <th>Alamat</th>
+                                            <th>Foto</th>
+                                            <th>Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($rekap_all_pulang as $all_p) : ?>
+                                            <tr>
+                                                <td><?php echo $all_p['tanggal_absen']; ?></td>
+                                                <td><?php echo $all_p['jam_absen']; ?></td>
+                                                <td><?php echo round($all_p['jarak']) . " Meter"; ?></td>
+                                                <td><?php echo $all_p['address']; ?></td>
+                                                <td><img src="<?php echo base_url('uploads/') . $all_p['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
+                                                <td></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php } ?>
             <!-- <section class="text-center mt-2">
                 <div class="card">
                     <div class="container-fluid">
