@@ -164,7 +164,103 @@
                     </tr>
                 </table>
             </section>
-            <section class="text-center mt-2">
+            <?php
+            $bulan = date('m');
+            if ($bulan == '01') {
+                $month = "JANUARI";
+            } elseif ($bulan == '02') {
+                $month = "FEBRUARI";
+            } elseif ($bulan == '03') {
+                $month = "MARET";
+            } elseif ($bulan == '04') {
+                $month = "APRIL";
+            } elseif ($bulan == '05') {
+                $month = "MEI";
+            } elseif ($bulan == '06') {
+                $month = "JUNI";
+            } elseif ($bulan == '07') {
+                $month = "JULI";
+            } elseif ($bulan == '08') {
+                $month = "AGUSTUS";
+            } elseif ($bulan == '09') {
+                $month = "SEPTEMBER";
+            } elseif ($bulan == '10') {
+                $month = "OKTOBER";
+            } elseif ($bulan == '11') {
+                $month = "NOVEMBER";
+            } elseif ($bulan == '12') {
+                $month = "DESEMBER";
+            } else {
+                $month = "";
+            }
+            ?>
+            <section class="text-center mt-3">
+                <div class="card">
+                    <div class="container-fluid">
+                        <h3 class="m-2"><strong>DATA ABSEN MASUK BULAN <?php echo $month; ?></strong></h3>
+                        <div class="table-responsive m-2">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jam</th>
+                                        <th>Jarak</th>
+                                        <th>Alamat</th>
+                                        <th>Foto</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($rekap_masuk as $m) : ?>
+                                        <tr>
+                                            <td><?php echo $m['tanggal_absen']; ?></td>
+                                            <td><?php echo $m['jam_absen']; ?></td>
+                                            <td><?php echo round($m['jarak']) . " Meter"; ?></td>
+                                            <td><?php echo $m['address']; ?></td>
+                                            <td><img src="<?php echo base_url('uploads/') . $m['gambar']; ?>" alt="Gambar" width="65px"></td>
+                                            <td></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-center mt-3">
+                <div class="card">
+                    <div class="container-fluid">
+                        <h3 class="m-2"><strong>DATA ABSEN PULANG BULAN <?php echo $month; ?></strong></h3>
+                        <div class="table-responsive m-2">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jam</th>
+                                        <th>Jarak</th>
+                                        <th>Alamat</th>
+                                        <th>Foto</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($rekap_pulang as $p) : ?>
+                                        <tr>
+                                            <td><?php echo $p['tanggal_absen']; ?></td>
+                                            <td><?php echo $p['jam_absen']; ?></td>
+                                            <td><?php echo round($p['jarak']) . " Meter"; ?></td>
+                                            <td><?php echo $p['address']; ?></td>
+                                            <td><img src="<?php echo base_url('uploads/') . $p['gambar']; ?>" alt="Gambar" width="65px"></td>
+                                            <td></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="text-center mt-2">
                 <div class="card">
                     <div class="container-fluid">
                         <table style="width: 100%; font-family: 'Arial Narrow', Arial, sans-serif; font-size: 0.69em;" class="mt-1 mb-1">
@@ -246,7 +342,7 @@
                         </table>
                     </div>
                 </div>
-            </section>
+            </section> -->
         </div>
     </div>
 </div>
