@@ -64,7 +64,7 @@
                                                 <th>Jabatan</th>
                                                 <th>Status</th>
                                                 <th>Role</th>
-                                                <th>Sekolah</th>
+                                                <!-- <th>Sekolah</th> -->
                                                 <th>Skema</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -92,7 +92,7 @@
                                                             echo "Kepala Sekolah";
                                                         } ?>
                                                     </td>
-                                                    <td><?php echo $pg->sekolah; ?></td>
+                                                    <!-- <td><?php echo $pg->sekolah; ?></td> -->
                                                     <td>
                                                         <div class="btn-group">
                                                             <button class="btn btn-sm btn-success dropdown-toggle waves-effect waves-float waves-light" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" width="100%">
