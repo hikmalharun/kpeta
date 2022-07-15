@@ -65,6 +65,7 @@
                                                 <th>Status</th>
                                                 <th>Role</th>
                                                 <th>Sekolah</th>
+                                                <th>Skema</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -93,6 +94,18 @@
                                                     </td>
                                                     <td><?php echo $pg->sekolah; ?></td>
                                                     <td>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-sm btn-success dropdown-toggle waves-effect waves-float waves-light" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" width="100%">
+                                                                Skema
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+                                                                <a class="dropdown-item" href="<?php echo base_url('admin/pegawai/reset_skema?email=') . $pg->email . '&jenis=1'; ?>">07:30:00 - 16:00:00</a>
+                                                                <a class="dropdown-item" href="<?php echo base_url('admin/pegawai/reset_skema?email=') . $pg->email . '&jenis=2'; ?>">07:00:00 - 15:30:00</a>
+                                                                <a class="dropdown-item" href="<?php echo base_url('admin/pegawai/reset_skema?email=') . $pg->email . '&jenis=3'; ?>">18:00:00 - 06:00:00</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
                                                         <form method="post" action="<?php echo base_url('admin/pegawai/status'); ?>" class="" enctype="multipart/form-data">
                                                             <input type="hidden" name="id" value="<?php echo $pg->id; ?>">
                                                             <button type="submit" class="btn btn-sm btn-success" style="width: 85%; margin: 2px;">Status Pengguna</button>
@@ -101,32 +114,6 @@
                                                             <input type="hidden" name="id" value="<?php echo $pg->id; ?>">
                                                             <button type="submit" class="btn btn-sm btn-success" style="width: 85%; margin: 2px;">Reset Password</button>
                                                         </form>
-                                                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#reset_skema" style="width: 85%; margin: 2px;">Skema</button><br>
-                                                        <!-- Modal Start-->
-                                                        <div class="modal fade text-start" id="reset_skema" tabindex="-1" aria-labelledby="myModalLabel4" data-bs-backdrop="false" aria-hidden="true" style="background: rgba(0,0,0,0.5);">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title" id="myModalLabel4">Skema</h4>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <form method="post" action="<?php echo base_url('admin/pegawai/reset_skema'); ?>" class="" enctype="multipart/form-data">
-                                                                            <input type="hidden" name="email" value="<?php echo $pg->email; ?>">
-                                                                            <label for="jam">Jam Absen</label>
-                                                                            <select id="jam" name="jenis" class="form-control mb-1" required>
-                                                                                <option value="">Pilih</option>>
-                                                                                <option value="1">07:30:00 - 16:00:00</option>
-                                                                                <option value="2">07:00:00 - 15:30:00</option>
-                                                                                <option value="3">18:00:00 - 06:00:00</option>
-                                                                            </select>
-                                                                            <button type="submit" class="btn btn-success float-end">Simpan</button>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Modal End -->
                                                         <?php
                                                         $whatsapp = "https://api.whatsapp.com/send?phone=";
                                                         $link = base_url() . 'authentication/verify_account?token=' . $pg->token . '%20%20Dengan%20%20*Username*%20=%20' . $pg->email . ',%20*Password*%20=%20' . $pg->password_default;

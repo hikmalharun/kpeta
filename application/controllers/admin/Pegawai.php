@@ -537,8 +537,8 @@ class Pegawai extends CI_Controller
 
     public function reset_skema()
     {
-        $email = $this->input->post('email');
-        $jenis = $this->input->post('jenis');
+        $email = $this->input->get('email');
+        $jenis = $this->input->get('jenis');
         if ($jenis == 1) {
             $masuk = '07:30:00';
             $pulang = '16:00:00';
