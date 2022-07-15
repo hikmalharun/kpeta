@@ -43,56 +43,7 @@
                                         <label for="lokasi">Lokasi</label>
                                         <input type="text" id="lokasi" name="lokasi" class="form-control mb-1" placeholder="Copy Paste Titik Koordinat Dari Google Map" required>
                                         <!-- <div class="mb-1" id="map" style="width: 100%;height: 320px;"></div> -->
-                                        <!-- =========== LEAFLET =========== -->
-                                        <div class="leaflet-map leaflet-container leaflet-fade-anim leaflet-grab leaflet-touch-drag mb-1" id="drag-map" tabindex="0" style="position: relative; outline: none;">
-                                            <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(-686px, 0px, 0px);">
-                                                <!-- <div class="leaflet-pane leaflet-tile-pane">
-                                                    <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
-                                                        <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);">
-                                                            <img alt="" role="presentation" src="https://a.tile.osm.org/12/2076/1410.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(716px, 246px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://b.tile.osm.org/12/2075/1409.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(460px, -10px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://c.tile.osm.org/12/2076/1409.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(716px, -10px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://c.tile.osm.org/12/2075/1410.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(460px, 246px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://a.tile.osm.org/12/2074/1409.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(204px, -10px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://a.tile.osm.org/12/2077/1409.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(972px, -10px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://b.tile.osm.org/12/2074/1410.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(204px, 246px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://b.tile.osm.org/12/2077/1410.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(972px, 246px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://c.tile.osm.org/12/2073/1409.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-52px, -10px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://b.tile.osm.org/12/2078/1409.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1228px, -10px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://a.tile.osm.org/12/2073/1410.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-52px, 246px, 0px); opacity: 1;">
-                                                            <img alt="" role="presentation" src="https://c.tile.osm.org/12/2078/1410.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1228px, 246px, 0px); opacity: 1;">
-                                                        </div>
-                                                        <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 17; transform: translate3d(0px, 0px, 0px) scale(0.5);"></div>
-                                                    </div>
-                                                </div> -->
-                                                <div class="leaflet-pane leaflet-shadow-pane">
-                                                    <img src="<?php echo base_url(); ?>app-assets/vendors/css/maps/images/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(654px, 187px, 0px);">
-                                                </div>
-                                                <div class="leaflet-pane leaflet-overlay-pane"></div>
-                                                <div class="leaflet-pane leaflet-marker-pane">
-                                                    <img src="<?php echo base_url(); ?>app-assets/vendors/css/maps/images/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive leaflet-marker-draggable" alt="" tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(654px, 187px, 0px); z-index: 200;">
-                                                </div>
-                                                <div class="leaflet-pane leaflet-tooltip-pane"></div>
-                                                <div class="leaflet-pane leaflet-popup-pane"></div>
-                                                <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(531438px, 360914px, 0px) scale(2048);"></div>
-                                            </div>
-                                            <div class="leaflet-control-container">
-                                                <div class="leaflet-top leaflet-left">
-                                                    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                                                        <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a>
-                                                        <a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">−</a>
-                                                    </div>
-                                                </div>
-                                                <div class="leaflet-top leaflet-right"></div>
-                                                <div class="leaflet-bottom leaflet-left"></div>
-                                                <!-- <div class="leaflet-bottom leaflet-right">
-                                                    <div class="leaflet-control-attribution leaflet-control">
-                                                        <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>
-                                                    </div>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <!-- =========== LEAFLET =========== -->
+                                        <div class="leaflet-map" id="drag-map"></div>
                                         <table width="100%">
                                             <tr>
                                                 <td>
@@ -163,8 +114,8 @@
 </div>
 <!-- END: Content-->
 <?php $this->load->view('templates/footer') ?>
-<!-- 
-<script>
+
+<!-- <script>
     var map = L.map('map').setView([-6.3738321, 107.9567161], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

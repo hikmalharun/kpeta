@@ -35,7 +35,7 @@
                                         <input id="name" name="name" type="text" class="form-control mb-1" placeholder="Nama Lengkap" required>
                                         <label for="email">Email</label>
                                         <input id="email" name="email" type="text" class="form-control mb-1" placeholder="Email" required>
-                                        <label for="nohp">Email</label>
+                                        <label for="nohp">No. WhatsApp</label>
                                         <input id="nohp" name="nohp" type="text" class="form-control mb-1" placeholder="Nomor Whatsapp" required>
                                         <label for="sekolah">Sekolah</label>
                                         <select name="sekolah" class="form-control mb-1" required>
@@ -59,6 +59,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Nama</th>
+                                                <th>Foto</th>
                                                 <th>Email</th>
                                                 <th>Jabatan</th>
                                                 <th>Status</th>
@@ -71,6 +72,7 @@
                                             <?php foreach ($data_pengguna as $pg) : ?>
                                                 <tr>
                                                     <td><?php echo $pg->name; ?></td>
+                                                    <td><img src="<?php echo base_url('assets/images/profile/') . $pg->gambar; ?>" alt="FotoProfile" class="avatar" width="80px"></td>
                                                     <td><?php echo $pg->email; ?></td>
                                                     <td><?php echo $pg->jabatan; ?></td>
                                                     <td>

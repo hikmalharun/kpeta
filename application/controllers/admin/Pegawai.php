@@ -551,7 +551,7 @@ class Pegawai extends CI_Controller
         $batas_akhir_masuk = $jam_masuk + 7200;
 
         if ($jam > $batas_awal_masuk || $jam < $batas_akhir_masuk) {
-            if ($masuk == 1) {
+            if ($masuk == 0) {
                 $data['title'] = "ABSEN";
                 $this->load->view('absen_masuk', $data);
             } elseif ($masuk == 1) {
@@ -644,6 +644,8 @@ class Pegawai extends CI_Controller
             'jarak' => $jarak,
             'jam_absen' => date('H:i:s'),
             'tanggal_absen' => date('Y-m-d'),
+            'bulan' => date('m'),
+            'tahun' => date('Y'),
             'koordinat' => $latitude . ',' . $longitude,
             'gambar' => $filename,
             'latitude' => $latitude,
@@ -701,6 +703,8 @@ class Pegawai extends CI_Controller
             'jarak' => $jarak,
             'jam_absen' => date('H:i:s'),
             'tanggal_absen' => date('Y-m-d'),
+            'bulan' => date('m'),
+            'tahun' => date('Y'),
             'koordinat' => $latitude . ',' . $longitude,
             'gambar' => $filename,
             'latitude' => $latitude,

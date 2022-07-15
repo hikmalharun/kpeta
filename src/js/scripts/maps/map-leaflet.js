@@ -4436,11 +4436,11 @@ $(function () {
   // Drag and popup
   // --------------------------------------------------------------------
   if ($('#drag-map').length) {
-    var draggableMap = L.map('drag-map').setView([48.817152, 2.455], 12);
-    var markerLocation = L.marker([48.817152, 2.455], {
+    var draggableMap = L.map('drag-map').setView([-6.373572, 107.957498], 12);
+    var markerLocation = L.marker([-6.373572, 107.957498], {
       draggable: 'true'
     }).addTo(draggableMap);
-    markerLocation.bindPopup("<b>You're here!</b>").openPopup();
+    markerLocation.bindPopup("<b>SMAN 1 ANJATAN</b>").openPopup();
     L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
       maxZoom: 18
