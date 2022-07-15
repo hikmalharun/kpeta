@@ -250,7 +250,7 @@
                                             <td><?php echo $p['jam_absen']; ?></td>
                                             <td><?php echo round($p['jarak']) . " Meter"; ?></td>
                                             <td><?php echo $p['address']; ?></td>
-                                            <td><img src="<?php echo base_url('uploads/') . $p['gambar']; ?>" alt="Gambar" width="65px"></td>
+                                            <td><img src="<?php echo base_url('uploads/') . $p['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
                                             <td></td>
                                         </tr>
                                     <?php endforeach; ?>
