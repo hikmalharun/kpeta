@@ -217,7 +217,7 @@
                                             <td><?php echo $m['jam_absen']; ?></td>
                                             <td><?php echo round($m['jarak']) . " Meter"; ?></td>
                                             <td><?php echo $m['address']; ?></td>
-                                            <td><img src="<?php echo base_url('uploads/') . $m['gambar']; ?>" alt="Gambar" width="65px"></td>
+                                            <td><img src="<?php echo base_url('uploads/') . $m['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
                                             <td></td>
                                         </tr>
                                     <?php endforeach; ?>
