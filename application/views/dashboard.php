@@ -269,6 +269,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>Nama</th>
                                             <th>Tanggal</th>
                                             <th>Jam</th>
                                             <th>Jarak</th>
@@ -280,6 +281,7 @@
                                     <tbody>
                                         <?php foreach ($rekap_all_masuk as $all_m) : ?>
                                             <tr>
+                                                <td><?php echo $all_m['nama']; ?></td>
                                                 <td><?php echo $all_m['tanggal_absen']; ?></td>
                                                 <td><?php echo $all_m['jam_absen']; ?></td>
                                                 <td><?php echo round($all_m['jarak']) . " Meter"; ?></td>
@@ -302,6 +304,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>Nama</th>
                                             <th>Tanggal</th>
                                             <th>Jam</th>
                                             <th>Jarak</th>
@@ -313,6 +316,7 @@
                                     <tbody>
                                         <?php foreach ($rekap_all_pulang as $all_p) : ?>
                                             <tr>
+                                                <td><?php echo $all_p['nama']; ?></td>
                                                 <td><?php echo $all_p['tanggal_absen']; ?></td>
                                                 <td><?php echo $all_p['jam_absen']; ?></td>
                                                 <td><?php echo round($all_p['jarak']) . " Meter"; ?></td>
