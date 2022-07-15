@@ -59,7 +59,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Nama</th>
-                                                <th>Foto</th>
+                                                <!-- <th>Foto</th> -->
                                                 <th>Email</th>
                                                 <th>Jabatan</th>
                                                 <th>Status</th>
@@ -72,7 +72,7 @@
                                             <?php foreach ($data_pengguna as $pg) : ?>
                                                 <tr>
                                                     <td><?php echo $pg->name; ?></td>
-                                                    <td><img src="<?php echo base_url('assets/images/profile/') . $pg->gambar; ?>" alt="FotoProfile" class="avatar" width="80px"></td>
+                                                    <!-- <td><img src="<?php echo base_url('assets/images/profile/') . $pg->gambar; ?>" alt="FotoProfile" class="avatar" width="80px"></td> -->
                                                     <td><?php echo $pg->email; ?></td>
                                                     <td><?php echo $pg->jabatan; ?></td>
                                                     <td>
@@ -100,6 +100,10 @@
                                                         <form method="post" action="<?php echo base_url('admin/pegawai/reset_password'); ?>" class="" enctype="multipart/form-data">
                                                             <input type="hidden" name="id" value="<?php echo $pg->id; ?>">
                                                             <button type="submit" class="btn btn-sm btn-success" style="width: 80%; margin: 2px;">Reset Password</button>
+                                                        </form>
+                                                        <form method="post" action="<?php echo base_url('admin/pegawai/reset_skema'); ?>" class="" enctype="multipart/form-data">
+                                                            <input type="hidden" name="email" value="<?php echo $pg->email; ?>">
+                                                            <button type="submit" class="btn btn-sm btn-success" style="width: 80%; margin: 2px;">Reset Skema</button>
                                                         </form>
                                                         <?php
                                                         $whatsapp = "https://api.whatsapp.com/send?phone=";

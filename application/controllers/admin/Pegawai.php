@@ -535,6 +535,23 @@ class Pegawai extends CI_Controller
         redirect('admin/pegawai/data_pengguna');
     }
 
+    public function reset_skema()
+    {
+        $email = $this->input->post('email');
+
+        $skema_data = array(
+            'latitude' => '-6.373581',
+            'longitude' => '107.957511',
+            'koordinat' => '-6.373581, 107.957511',
+        );
+
+        $this->db->set($skema_data);
+        $this->db->where('email', $email);
+        $this->db->update('skema');
+        $this->session->set_flashdata('pesan_token', '<div class="alert alert-success" role="alert">Skema pengguna berhasil direset.</div>');
+        redirect('admin/pegawai/data_pengguna');
+    }
+
     function absen_masuk()
     {
         $masuk = $this->db->get_where('absen_masuk', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->num_rows();
