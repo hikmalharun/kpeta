@@ -199,7 +199,7 @@
                     <div class="container-fluid">
                         <h3 class="m-2"><strong>DATA ABSEN MASUK BULAN <?php echo $month; ?></strong></h3>
                         <div class="table-responsive m-2">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="table">
                                 <thead>
                                     <tr>
                                         <th>Tanggal</th>
@@ -301,7 +301,7 @@
                         <div class="container-fluid">
                             <h3 class="m-2"><strong>DATA ABSEN PULANG BULAN <?php echo $month; ?></strong></h3>
                             <div class="table-responsive m-2">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" id="table">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
