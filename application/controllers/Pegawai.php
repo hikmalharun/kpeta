@@ -160,6 +160,8 @@ class Pegawai extends CI_Controller
         redirect('pegawai/profile');
     }
 
+    // ====================== ABSEN ========================
+
     function absen_masuk()
     {
         $masuk = $this->db->get_where('absen_masuk', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->num_rows();
@@ -172,8 +174,8 @@ class Pegawai extends CI_Controller
         $jam = strtotime($nows);
 
         $jam_masuk = strtotime($data['skema']['masuk']);
-        $batas_awal_masuk = $jam_masuk - 7200;
-        $batas_akhir_masuk = $jam_masuk + 7200;
+        $batas_awal_masuk = $jam_masuk - (60 * 60 * 1);
+        $batas_akhir_masuk = $jam_masuk + (60 * 60 * 2);
 
         if ($jam > $batas_awal_masuk || $jam < $batas_akhir_masuk) {
             if ($masuk == 0) {
@@ -199,7 +201,7 @@ class Pegawai extends CI_Controller
         $jam = strtotime($nows);
 
         $jam_pulang = strtotime($data['skema']['pulang']);
-        $batas_akhir_pulang = $jam_pulang + 7200;
+        $batas_akhir_pulang = $jam_pulang + (60 * 60 * 5);
 
         if ($jam > $jam_pulang && $jam < $batas_akhir_pulang) {
             if ($pulang == 0) {

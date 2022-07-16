@@ -76,7 +76,7 @@
                                     <td><?php echo $pulang['jam_absen']; ?></td>
                                     <td><?php echo round($pulang['jarak']); ?> Meter</td>
                                     <td><?php echo $pulang['address']; ?></td>
-                                    <td><img src="<?php echo base_url('uploads/') . $pulang['gambar']; ?>" alt="Gambar" width="85px" height="165px"></td>
+                                    <td><img src="<?php echo base_url('uploads/') . $pulang['gambar']; ?>" alt="Gambar" width="85px" height="100px"></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

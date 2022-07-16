@@ -292,12 +292,12 @@ class Authentication extends CI_Controller
                             'npsn' => $pegawai['npsn'],
                             'sekolah' => $pegawai['sekolah'],
                             'lokasi' => $pegawai['sekolah'],
-                            'masuk' => '07:00:00',
-                            'pulang' => '15:00:00',
+                            'masuk' => '07:30:00',
+                            'pulang' => '16:00:00',
                             'status' => '1',
-                            'latitude' => '-6.3738268',
-                            'longitude' => '107.9545274',
-                            'koordinat' => '-6.3738268,107.9545274',
+                            'latitude' => '-6.373581',
+                            'longitude' => '107.957511',
+                            'koordinat' => '-6.373581, 107.957511',
                             'tanggal_add' => date('Y-m-d')
                         );
                         $this->Authtentication_model->insert_skema('skema', $data_skema);

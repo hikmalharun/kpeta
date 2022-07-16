@@ -52,9 +52,9 @@
                                     //$jam_masuk = strtotime('13:30:00');
                                     $jam_pulang = strtotime($skema['pulang']);
                                     //$jam_pulang = strtotime('19:00:00');
-                                    $batas_awal_masuk = $jam_masuk - 7200;
-                                    $batas_akhir_masuk = $jam_masuk + 7200;
-                                    $batas_akhir_pulang = $jam_pulang + 7200;
+                                    $batas_awal_masuk = $jam_masuk - (60 * 60 * 1);
+                                    $batas_akhir_masuk = $jam_masuk + (60 * 60 * 2);
+                                    $batas_akhir_pulang = $jam_pulang + (60 * 60 * 5);
 
                                     $countmasuk = $this->db->get_where('absen_masuk', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->num_rows();
                                     $countpulang = $this->db->get_where('absen_pulang', ['email' => $this->session->userdata('email'), 'tanggal_absen' => date('Y-m-d')])->num_rows();
@@ -71,11 +71,11 @@
                                                 <?php if ($countmasuk == 0) { ?>
                                                     <?php if ($user['role_id'] == 2) { ?>
                                                         <a href="<?php echo base_url('pegawai/absen_masuk') ?>">
-                                                            <i class="fas fa-bell text-warning" style="font-size: 80px; padding: 10px 14px 10px 14px;"></i>
+                                                            <i class="fas fa-bell text-warning" style="font-size: 90px; padding: 10px 14px 10px 14px; width: 100%;"></i>
                                                         </a>
                                                     <?php } else { ?>
                                                         <a href="<?php echo base_url('admin/pegawai/absen_masuk') ?>">
-                                                            <i class="fas fa-bell text-warning" style="font-size: 80px; padding: 10px 14px 10px 14px;"></i>
+                                                            <i class="fas fa-bell text-warning" style="font-size: 90px; padding: 10px 14px 10px 14px; width: 100%;"></i>
                                                         </a>
                                                     <?php } ?>
                                                 <?php } ?>
@@ -93,11 +93,11 @@
                                                 <?php if ($countpulang == 0) { ?>
                                                     <?php if ($user['role_id'] == 2) { ?>
                                                         <a href="<?php echo base_url('pegawai/absen_pulang') ?>">
-                                                            <i class="fas fa-bell text-warning" style="font-size: 80px; padding: 10px 14px 10px 14px;"></i>
+                                                            <i class="fas fa-bell text-warning" style="font-size: 90px; padding: 10px 14px 10px 14px; width: 100%;"></i>
                                                         </a>
                                                     <?php } else { ?>
                                                         <a href="<?php echo base_url('admin/pegawai/absen_pulang') ?>">
-                                                            <i class="fas fa-bell text-warning" style="font-size: 80px; padding: 10px 14px 10px 14px;"></i>
+                                                            <i class="fas fa-bell text-warning" style="font-size: 90px; padding: 10px 14px 10px 14px; width: 100%;"></i>
                                                         </a>
                                                     <?php } ?>
                                                 <?php } ?>
@@ -218,7 +218,19 @@
                                             <td><?php echo round($m['jarak']) . " Meter"; ?></td>
                                             <td><?php echo $m['address']; ?></td>
                                             <td><img src="<?php echo base_url('uploads/') . $m['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
-                                            <td></td>
+                                            <td>
+                                                <?php
+                                                $rule = strtotime($skema['masuk']);
+                                                $real = strtotime($m['jam_absen']);
+                                                $diff = $real - $rule;
+                                                $get = floor($diff / (60));
+                                                ?>
+                                                <?php if ($get <= 0) { ?>
+                                                    <span class="text-sm text-success">Absen Tepat Waktu</span>
+                                                <?php } else { ?>
+                                                    <span class="text-sm text-danger">Terlambat <?php echo $get; ?> Menit</span>
+                                                <?php } ?>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -251,7 +263,19 @@
                                             <td><?php echo round($p['jarak']) . " Meter"; ?></td>
                                             <td><?php echo $p['address']; ?></td>
                                             <td><img src="<?php echo base_url('uploads/') . $p['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
-                                            <td></td>
+                                            <td>
+                                                <?php
+                                                $rule = strtotime($skema['pulang']);
+                                                $real = strtotime($p['jam_absen']);
+                                                $diff = $real - $rule;
+                                                $get = floor($diff / (60));
+                                                ?>
+                                                <?php if ($get >= 0) { ?>
+                                                    <span class="text-sm text-success">Absen Tepat Waktu</span>
+                                                <?php } else { ?>
+                                                    <span class="text-sm text-danger">Absen Cepat <?php echo (-1 * $get); ?> Menit</span>
+                                                <?php } ?>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -287,7 +311,19 @@
                                                 <td><?php echo round($all_m['jarak']) . " Meter"; ?></td>
                                                 <td><?php echo $all_m['address']; ?></td>
                                                 <td><img src="<?php echo base_url('uploads/') . $all_m['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
-                                                <td></td>
+                                                <td>
+                                                    <?php
+                                                    $rule = strtotime($skema['masuk']);
+                                                    $real = strtotime($m['jam_absen']);
+                                                    $diff = $real - $rule;
+                                                    $get = floor($diff / (60));
+                                                    ?>
+                                                    <?php if ($get <= 0) { ?>
+                                                        <span class="text-sm text-success">Absen Tepat Waktu</span>
+                                                    <?php } else { ?>
+                                                        <span class="text-sm text-danger">Terlambat <?php echo $get; ?> Menit</span>
+                                                    <?php } ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -322,7 +358,19 @@
                                                 <td><?php echo round($all_p['jarak']) . " Meter"; ?></td>
                                                 <td><?php echo $all_p['address']; ?></td>
                                                 <td><img src="<?php echo base_url('uploads/') . $all_p['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
-                                                <td></td>
+                                                <td>
+                                                    <?php
+                                                    $rule = strtotime($skema['pulang']);
+                                                    $real = strtotime($p['jam_absen']);
+                                                    $diff = $real - $rule;
+                                                    $get = floor($diff / (60));
+                                                    ?>
+                                                    <?php if ($get >= 0) { ?>
+                                                        <span class="text-sm text-success">Absen Tepat Waktu</span>
+                                                    <?php } else { ?>
+                                                        <span class="text-sm text-danger">Absen Cepat <?php echo (-1 * $get); ?> Menit</span>
+                                                    <?php } ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>

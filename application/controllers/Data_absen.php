@@ -70,7 +70,6 @@ class Data_absen extends CI_Controller
         $tanggal = $this->tgl_indo(date('Y-m-j'));
         $data['tanggal'] = $days[$hari] . ', ' . $tanggal;
         //End Hari Tanggal
-        $data['users'] = $this->db->get_where('pengguna', ['status' => 1])->result_array();
         $data['rekap_all_masuk'] = $this->db->get_where('absen_masuk', ['tanggal_absen' => date('Y-m-d')])->result_array();
         $data['rekap_all_pulang'] = $this->db->get_where('absen_pulang', ['tanggal_absen' => date('Y-m-d')])->result_array();
         $data['title'] = "DATA ABSEN";

@@ -390,12 +390,12 @@ class Pegawai extends CI_Controller
             'npsn' => $is_sekolah['npsn'],
             'sekolah' => $is_sekolah['sekolah'],
             'lokasi' => $is_sekolah['sekolah'],
-            'masuk' => '07:00:00',
-            'pulang' => '15:00:00',
+            'masuk' => '07:30:00',
+            'pulang' => '16:00:00',
             'status' => '1',
-            'latitude' => '-6.3738268',
-            'longitude' => '107.9545274',
-            'koordinat' => '-6.3738268,107.9545274',
+            'latitude' => '-6.373581',
+            'longitude' => '107.957511',
+            'koordinat' => '-6.373581, 107.957511',
             'tanggal_add' => date('Y-m-d')
         );
         $this->Authtentication_model->insert_skema('skema', $data_skema);
@@ -576,8 +576,8 @@ class Pegawai extends CI_Controller
         $jam = strtotime($nows);
 
         $jam_masuk = strtotime($data['skema']['masuk']);
-        $batas_awal_masuk = $jam_masuk - 7200;
-        $batas_akhir_masuk = $jam_masuk + 7200;
+        $batas_awal_masuk = $jam_masuk - (60 * 60 * 1);
+        $batas_akhir_masuk = $jam_masuk + (60 * 60 * 2);
 
         if ($jam > $batas_awal_masuk || $jam < $batas_akhir_masuk) {
             if ($masuk == 0) {
@@ -603,7 +603,7 @@ class Pegawai extends CI_Controller
         $jam = strtotime($nows);
 
         $jam_pulang = strtotime($data['skema']['pulang']);
-        $batas_akhir_pulang = $jam_pulang + 7200;
+        $batas_akhir_pulang = $jam_pulang + (60 * 60 * 5);
 
         if ($jam > $jam_pulang && $jam < $batas_akhir_pulang) {
             if ($pulang == 0) {
