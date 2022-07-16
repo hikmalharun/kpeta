@@ -96,7 +96,10 @@
                                                     <td>
                                                         <div class="btn-group">
                                                             <button class="btn btn-sm btn-success dropdown-toggle waves-effect waves-float waves-light" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" width="100%">
-                                                                Skema
+                                                                <?php
+                                                                $beef = $this->db->get_where('skema', ['email' => $pg->email])->row_array();
+                                                                echo $beef['masuk'] . ' - ' . $beef['pulang'];
+                                                                ?>
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
                                                                 <a class="dropdown-item" href="<?php echo base_url('admin/pegawai/reset_skema?email=') . $pg->email . '&jenis=1'; ?>">07:30:00 - 16:00:00</a>
