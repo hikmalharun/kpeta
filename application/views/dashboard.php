@@ -312,17 +312,17 @@
                                                 <td><?php echo $all_m['address']; ?></td>
                                                 <td><img src="<?php echo base_url('uploads/') . $all_m['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
                                                 <td>
-                                                    <?php
-                                                    $rule = strtotime($skema['masuk']);
-                                                    $real = strtotime($m['jam_absen']);
-                                                    $diff = $real - $rule;
-                                                    $get = floor($diff / (60));
-                                                    ?>
+                                                    <!-- <?php
+                                                            $rule = strtotime($skema['masuk']);
+                                                            $real = strtotime($m['jam_absen']);
+                                                            $diff = $real - $rule;
+                                                            $get = floor($diff / (60));
+                                                            ?>
                                                     <?php if ($get <= 0) { ?>
                                                         <span class="text-sm text-success">Absen Tepat Waktu</span>
                                                     <?php } else { ?>
                                                         <span class="text-sm text-danger">Terlambat <?php echo $get; ?> Menit</span>
-                                                    <?php } ?>
+                                                    <?php } ?> -->
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -359,17 +359,17 @@
                                                 <td><?php echo $all_p['address']; ?></td>
                                                 <td><img src="<?php echo base_url('uploads/') . $all_p['gambar']; ?>" alt="Gambar" width="65px" height="85px"></td>
                                                 <td>
-                                                    <?php
-                                                    $rule = strtotime($skema['pulang']);
-                                                    $real = strtotime($p['jam_absen']);
-                                                    $diff = $real - $rule;
-                                                    $get = floor($diff / (60));
-                                                    ?>
+                                                    <!-- <?php
+                                                            $rule = strtotime($skema['pulang']);
+                                                            $real = strtotime($p['jam_absen']);
+                                                            $diff = $real - $rule;
+                                                            $get = floor($diff / (60));
+                                                            ?>
                                                     <?php if ($get >= 0) { ?>
                                                         <span class="text-sm text-success">Absen Tepat Waktu</span>
                                                     <?php } else { ?>
                                                         <span class="text-sm text-danger">Absen Cepat <?php echo (-1 * $get); ?> Menit</span>
-                                                    <?php } ?>
+                                                    <?php } ?> -->
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
