@@ -43,7 +43,10 @@
 
 <body>
     <div class="text-center">
-        <h3>Data Absen <br><?php echo $tanggal; ?></h3>
+        <img src="https://saspd.sman1anjatan.sch.id/assets/images/kop.png" alt="" width="100%">
+    </div>
+    <div class="text-center">
+        <h5>Data Absen <br><?php echo $tanggal; ?></h5>
     </div>
     <strong>ABSEN MASUK</strong>
     <table>
@@ -62,10 +65,10 @@
             ?>
             <?php foreach ($rekap_all_masuk as $masuk) : ?>
                 <tr>
-                    <td><?php echo $no++; ?></td>
+                    <td class="text-center"><?php echo $no++; ?></td>
                     <td><?php echo $masuk['nama']; ?></td>
-                    <td><?php echo $masuk['jam_absen']; ?></td>
-                    <td><?php echo round($masuk['jarak']); ?> Meter</td>
+                    <td class="text-center"><?php echo $masuk['jam_absen']; ?></td>
+                    <td class="text-center"><?php echo round($masuk['jarak']); ?> Meter</td>
                     <td><?php echo $masuk['address']; ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -89,10 +92,10 @@
             ?>
             <?php foreach ($rekap_all_pulang as $pulang) : ?>
                 <tr>
-                    <td><?php echo $no++; ?></td>
+                    <td class="text-center"><?php echo $no++; ?></td>
                     <td><?php echo $pulang['nama']; ?></td>
-                    <td><?php echo $pulang['jam_absen']; ?></td>
-                    <td><?php echo round($pulang['jarak']); ?> Meter</td>
+                    <td class="text-center"><?php echo $pulang['jam_absen']; ?></td>
+                    <td class="text-center"><?php echo round($pulang['jarak']); ?> Meter</td>
                     <td><?php echo $pulang['address']; ?></td>
                 </tr>
             <?php endforeach; ?>
