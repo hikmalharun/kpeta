@@ -44,9 +44,7 @@
 <body>
     <div class="text-center">
         <img src="https://saspd.sman1anjatan.sch.id/assets/images/kop.png" alt="" width="100%">
-    </div>
-    <div class="text-center">
-        <h5>Data Absen <br><?php echo $tanggal; ?></h5>
+        <h5 class="m-3">Data Absen <br><?php echo $tanggal; ?></h5>
     </div>
     <strong>ABSEN MASUK</strong>
     <table>
@@ -75,6 +73,10 @@
         </tbody>
     </table>
     <div class="pagebreak"> </div>
+    <div class="text-center">
+        <img src="https://saspd.sman1anjatan.sch.id/assets/images/kop.png" alt="" width="100%">
+        <h5 class="m-3">Data Absen <br><?php echo $tanggal; ?></h5>
+    </div>
     <strong>ABSEN PULANG</strong>
     <table>
         <thead>
