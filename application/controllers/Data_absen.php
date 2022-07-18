@@ -72,7 +72,32 @@ class Data_absen extends CI_Controller
         //End Hari Tanggal
         $data['rekap_all_masuk'] = $this->db->get_where('absen_masuk', ['tanggal_absen' => date('Y-m-d')])->result_array();
         $data['rekap_all_pulang'] = $this->db->get_where('absen_pulang', ['tanggal_absen' => date('Y-m-d')])->result_array();
-        $data['title'] = "DATA ABSEN";
+        $data['title'] = "Data Absen";
         $this->load->view('data_absen', $data);
+    }
+
+    public function print_harian()
+    {
+        //Start Hari Tanggal
+        $days = array(
+            1 =>    'Senin',
+            'Selasa',
+            'Rabu',
+            'Kamis',
+            'Jumat',
+            'Sabtu',
+            'Minggu'
+        );
+        $hari = date_default_timezone_set('Asia/Jakarta');
+        $hari = date('d-m-Y');
+        $hari = date('N', strtotime($hari));
+        $tanggal = date_default_timezone_set('Asia/Jakarta');
+        $tanggal = $this->tgl_indo(date('Y-m-j'));
+        $data['tanggal'] = $days[$hari] . ', ' . $tanggal;
+        //End Hari Tanggal
+        $data['rekap_all_masuk'] = $this->db->get_where('absen_masuk', ['tanggal_absen' => date('Y-m-d')])->result_array();
+        $data['rekap_all_pulang'] = $this->db->get_where('absen_pulang', ['tanggal_absen' => date('Y-m-d')])->result_array();
+        $data['title'] = "Data Absen";
+        $this->load->view('print_harian', $data);
     }
 }
