@@ -54,7 +54,6 @@
                 <th>Jam</th>
                 <th>Jarak</th>
                 <th>Alamat</th>
-                <th>Gambar</th>
             </tr>
         </thead>
         <tbody>
@@ -68,7 +67,6 @@
                     <td><?php echo $masuk['jam_absen']; ?></td>
                     <td><?php echo round($masuk['jarak']); ?> Meter</td>
                     <td><?php echo $masuk['address']; ?></td>
-                    <td class="text-center"><img src="<?php echo base_url('uploads/') . $masuk['gambar']; ?>" alt="Gambar" width="85px" height="100px"></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -83,7 +81,6 @@
                 <th>Jam</th>
                 <th>Jarak</th>
                 <th>Alamat</th>
-                <th>Gambar</th>
             </tr>
         </thead>
         <tbody>
@@ -97,7 +94,6 @@
                     <td><?php echo $pulang['jam_absen']; ?></td>
                     <td><?php echo round($pulang['jarak']); ?> Meter</td>
                     <td><?php echo $pulang['address']; ?></td>
-                    <td class="text-center"><img src="<?php echo base_url('uploads/') . $pulang['gambar']; ?>" alt="Gambar" width="85px" height="100px"></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
