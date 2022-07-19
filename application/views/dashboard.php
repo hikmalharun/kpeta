@@ -52,7 +52,7 @@
                                     //$jam_masuk = strtotime('13:30:00');
                                     $jam_pulang = strtotime($skema['pulang']);
                                     //$jam_pulang = strtotime('19:00:00');
-                                    $batas_awal_masuk = $jam_masuk - (60 * 60 * 1);
+                                    $batas_awal_masuk = $jam_masuk - (60 * 60 * 2);
                                     $batas_akhir_masuk = $jam_masuk + (60 * 60 * 2);
                                     $batas_akhir_pulang = $jam_pulang + (60 * 60 * 5);
 

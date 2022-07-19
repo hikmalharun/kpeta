@@ -576,7 +576,7 @@ class Pegawai extends CI_Controller
         $jam = strtotime($nows);
 
         $jam_masuk = strtotime($data['skema']['masuk']);
-        $batas_awal_masuk = $jam_masuk - (60 * 60 * 1);
+        $batas_awal_masuk = $jam_masuk - (60 * 60 * 2);
         $batas_akhir_masuk = $jam_masuk + (60 * 60 * 2);
 
         if ($jam > $batas_awal_masuk || $jam < $batas_akhir_masuk) {
